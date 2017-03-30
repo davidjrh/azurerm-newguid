@@ -58,7 +58,9 @@ The basic idea is to reference this template in your deployment that will genera
             "contentVersion": "1.0.0.0"
           },
           "parameters": {
-            "seed": "0"
+            "seed": {
+              "value": "0"
+            }
           }
         } 
     },
@@ -73,7 +75,9 @@ The basic idea is to reference this template in your deployment that will genera
             "contentVersion": "1.0.0.0"
           },
           "parameters": {
-            "seed": "1"
+            "seed": {
+              "value": "1"
+            }
           }
         } 
     }     
