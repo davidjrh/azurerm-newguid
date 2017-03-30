@@ -32,7 +32,7 @@ The basic idea is to reference this template in your deployment that will genera
   "outputs": {
     "result": {
       "type": "string",
-      "value": "[reference('MyGuid').outputs.guid]"
+      "value": "[reference('MyGuid').outputs.guid.value]"
     }
   }
 }
@@ -85,11 +85,11 @@ The basic idea is to reference this template in your deployment that will genera
   "outputs": {
     "result0": {
       "type": "string",
-      "value": "[reference('MyGuid0').outputs.guid]"
+      "value": "[reference('MyGuid0').outputs.guid.value]"
     },
     "result1": {
       "type": "string",
-      "value": "[reference('MyGuid1').outputs.guid]"
+      "value": "[reference('MyGuid1').outputs.guid.value]"
     }    
   }
 }
