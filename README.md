@@ -125,10 +125,6 @@ The basic idea is to reference this template in your deployment that will genera
     } 
   ],
   "outputs": {
-    "result": {
-      "type": "string",
-      "value": "[reference('MyGuid').outputs.guid.value]"
-    }
   }
 }
 ```
