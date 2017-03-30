@@ -5,5 +5,88 @@ This is a workaround for the problem described at https://feedback.azure.com/for
 
 The basic idea is to reference this template in your deployment that will generate a GUID for later usage on the same template. 
 
-## Example
+## Examples
 
+### Getting a guid and using it later
+
+```
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [ 
+    { 
+        "apiVersion": "2015-01-01", 
+        "name": "MyGuid", 
+        "type": "Microsoft.Resources/deployments", 
+        "properties": { 
+          "mode": "incremental", 
+          "templateLink": {
+            "uri": "https://raw.githubusercontent.com/davidjrh/azurerm-newguid/master/NewGuid.json",
+            "contentVersion": "1.0.0.0"
+          }
+        } 
+    } 
+  ],
+  "outputs": {
+    "result": {
+      "type": "string",
+      "value": "[reference('MyGuid').outputs.guid]"
+    }
+  }
+}
+```
+
+
+### Getting multiple guids and using them later
+```
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {},
+  "resources": [ 
+    { 
+        "apiVersion": "2015-01-01", 
+        "name": "MyGuid0", 
+        "type": "Microsoft.Resources/deployments", 
+        "properties": { 
+          "mode": "incremental", 
+          "templateLink": {
+            "uri": "https://raw.githubusercontent.com/davidjrh/azurerm-newguid/master/NewGuid.json",
+            "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+            "seed": "0"
+          }
+        } 
+    },
+    { 
+        "apiVersion": "2015-01-01", 
+        "name": "MyGuid1", 
+        "type": "Microsoft.Resources/deployments", 
+        "properties": { 
+          "mode": "incremental", 
+          "templateLink": {
+            "uri": "https://raw.githubusercontent.com/davidjrh/azurerm-newguid/master/NewGuid.json",
+            "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+            "seed": "1"
+          }
+        } 
+    }     
+  ],
+  "outputs": {
+    "result0": {
+      "type": "string",
+      "value": "[reference('MyGuid0').outputs.guid]"
+    },
+    "result1": {
+      "type": "string",
+      "value": "[reference('MyGuid1').outputs.guid]"
+    }    
+  }
+}
+```
