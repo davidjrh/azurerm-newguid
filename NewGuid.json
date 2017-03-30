@@ -6,8 +6,6 @@
   },
   "variables": {
     "uniqueBase": "[toLower(uniqueString(parameters('seed'), resourceGroup().id, deployment().name))]",
-    "uniqueBase2": "[variables('uniqueBase')]",
-    "uniqueBase3": "[substring(variables('uniqueBase'), 0, 10)]",
     "temp": "[concat(variables('uniqueBase') , variables('uniqueBase'), substring(variables('uniqueBase'), 0, 10))]",
     "g": "[replace(variables('temp'), 'g', '0')]",
     "h": "[replace(variables('g'), 'h', '1')]",
